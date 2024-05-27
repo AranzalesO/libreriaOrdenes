@@ -1,6 +1,6 @@
 import express from 'express';
 import { json } from 'body-parser';
-import routes from './routes/index.routes';
+import routes from './routes/index';
 
 const app = express();
 

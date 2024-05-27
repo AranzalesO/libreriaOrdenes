@@ -15,5 +15,5 @@ class HandlesChain {
     }
   }
   
-  module.exports = HandlesChain;
+  export default HandlesChain;
   
