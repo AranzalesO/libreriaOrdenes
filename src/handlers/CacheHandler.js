@@ -1,26 +1,21 @@
 import IHandler from './IHandler.js';
-import { createClient } from 'redis';
-const client = createClient();
+import NodeCache from 'node-cache';
+const cache = new NodeCache();
 
 class CacheHandler extends IHandler {
-  constructor() {
-    super();
-    this.cache = new Map();
-  }
-
-  handle(request) {
+  async handle(request) {
     const key = `${request.username}-${request.data}`;
-    return new Promise((resolve, reject) => {
-      client.get(key, (err, data) => {
-        if (err) reject(err);
-        if (data) {
-          resolve(JSON.parse(data));
-        } else {
-          client.set(key, JSON.stringify(request));
-          resolve(request);
-        }
-      });
-    });
+    try {
+      const cachedData = cache.get(key);
+      if (cachedData) {
+        return cachedData;
+      } else {
+        cache.set(key, request, 3600); // Cache for 1 hour
+        return request;
+      }
+    } catch (err) {
+      throw new Error('Cache error');
+    }
   }
 }
 

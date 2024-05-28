@@ -1,11 +1,12 @@
 import IHandler from './IHandler.js';
-import { clients, users } from '@clerk/clerk-sdk-node';
+import { users } from '@clerk/clerk-sdk-node';
 
 class AuthenticationHandler extends IHandler {
   constructor(apiKey) {
     super();
     this.apiKey = apiKey;
-    clients.setApiKey(apiKey);
+    // Set the API key globally for Clerk
+    process.env.CLERK_API_KEY = apiKey;
   }
 
   async handle(request) {
