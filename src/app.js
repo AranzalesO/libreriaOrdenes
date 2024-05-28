@@ -1,5 +1,6 @@
 import express from 'express';
-import { json } from 'body-parser';
+import bodyParser from 'body-parser';
+const { json } = bodyParser;
 import routes from './routes/index.js';
 
 const app = express();
