@@ -1,4 +1,4 @@
-import IHandler from './IHandler';
+import IHandler from './IHandler.js';
 import { sanitize } from 'sanitizer'; // Usa un módulo de sanitización
 
 class SanitizeDataHandler extends IHandler {

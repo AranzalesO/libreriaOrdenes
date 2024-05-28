@@ -1,4 +1,4 @@
-import IHandler from './IHandler';
+import IHandler from './IHandler.js';
 import { createClient } from 'redis';
 const client = createClient();
 

@@ -1,17 +1,16 @@
-const IHandler = require('./IHandler');
-const { Clerk } = require('@clerk/clerk-sdk-node');
+import IHandler from './IHandler.js';
+import { clients, users } from '@clerk/clerk-sdk-node';
 
 class AuthenticationHandler extends IHandler {
   constructor(apiKey) {
     super();
-    this.clerk = new Clerk({
-      apiKey: apiKey
-    });
+    this.apiKey = apiKey;
+    clients.setApiKey(apiKey);
   }
 
   async handle(request) {
     try {
-      const user = await this.clerk.users.verifyPassword(request.username, request.password);
+      const user = await users.verifyPassword(request.username, request.password);
       if (!user) {
         throw new Error('Authentication failed');
       }
@@ -23,4 +22,4 @@ class AuthenticationHandler extends IHandler {
   }
 }
 
-module.exports = AuthenticationHandler;
+export default AuthenticationHandler;

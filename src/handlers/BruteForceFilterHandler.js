@@ -1,4 +1,4 @@
-import IHandler from './IHandler';
+import IHandler from './IHandler.js';
 
 class BruteForceFilterHandler extends IHandler {
   constructor() {

@@ -4,5 +4,5 @@ class IHandler {
     }
   }
   
-  module.exports = IHandler;
+  export default IHandler;
   
