@@ -1,5 +1,5 @@
 import IHandler from './IHandler.js';
-import { users } from '@clerk/clerk-sdk-node';
+import * as Clerk from '@clerk/clerk-sdk-node';
 
 class AuthenticationHandler extends IHandler {
   constructor(apiKey) {
@@ -11,7 +11,7 @@ class AuthenticationHandler extends IHandler {
 
   async handle(request) {
     try {
-      const user = await users.verifyPassword(request.username, request.password);
+      const user = await Clerk.users.verifyPassword(request.username, request.password);
       if (!user) {
         throw new Error('Authentication failed');
       }
